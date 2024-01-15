@@ -19,3 +19,5 @@
 # Table of Contents
 
 ## Introductory Problems
+
+- [ ] [1. Weird-Algorithm](Introductory-Problems/Weird-Algorithm.cpp)
