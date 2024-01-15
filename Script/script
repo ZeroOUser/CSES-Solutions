@@ -46,8 +46,8 @@ update_readme() {
 generate_link() {
     local target_file="$1"
     FILENAME=$(basename "$target_file")
-    echo "1. [$FILENAME]($target_file.cpp)"
-    # 1. [Weird Algorithm](/Introductory-Problems/Weird-Algorithm.cpp)
+    echo "- [x] [1. $FILENAME]($target_file.cpp)"
+    # - [x] [1. Weird-Algorithm](Introductory-Problems/Weird-Algorithm.cpp)
 }
 
 
