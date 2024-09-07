@@ -1,3 +1,0 @@
-/home/zerouser/Desktop/my_learning/CSES/cmake-build-debug/CMakeFiles/CSES.dir
-/home/zerouser/Desktop/my_learning/CSES/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/zerouser/Desktop/my_learning/CSES/cmake-build-debug/CMakeFiles/rebuild_cache.dir

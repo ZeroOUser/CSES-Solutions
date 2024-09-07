@@ -1,9 +1,9 @@
-# CSES Solutions
+s# CSES Solutions
 
 
 | Problem Type          | Number Solved |
 |-----------------------|:-------------:|
-| Introductory Problems |     00/19     |
+| Introductory Problems |     05/19     |
 | Sorting and Searching |     00/35     |
 | Dynamic Programming   |     00/19     |
 | Graph Algorithms      |     00/36     |
@@ -20,4 +20,13 @@
 
 ## Introductory Problems
 
-- [ ] [1. Weird-Algorithm](Introductory-Problems/Weird-Algorithm.cpp)
+1. - [x] [Weird Algorithm](Introductory-Problems/Weird-Algorithm.cpp)
+1. - [x] [Missing Number](Introductory-Problems/Missing-Number.cpp)
+1. - [x] [Repetitions](Introductory-Problems/Repetitions.cpp)
+1. - [x] [Increasing Array](Introductory-Problems/Increasing-Array.cpp)
+1. - [x] [Permutations](Introductory-Problems/Permutations.cpp)
+1. - [x] [Number Spiral](Introductory-Problems/Number-Spiral.cpp)
+1. - [ ] Two Knights
+1. - [x] [Two Sets](Introductory-Problems/Two-Sets.cpp)
+1. - [x] [Bit Strings](Introductory-Problems/Bit-Strings.cpp)
+1. - [ ] Trailing Zeros

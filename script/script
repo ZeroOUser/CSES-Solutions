@@ -1,0 +1,110 @@
+#!/bin/bash
+
+# Function to display help message
+display_help() {
+    echo "Usage: $0 [option] <Problem>"
+    echo "Options:"
+    echo "  -d <directory>: Set the directory where files will be copied."
+    echo "  -h, --help:     Show this help message."
+    exit 0
+}
+
+# Function to display an error message and exit with status 1
+display_error() {
+    echo "Error: $1"
+    exit 1
+}
+
+# Function to update the README file with a checklist item
+# Doesn't work correctly
+update_readme() {
+    local directory="$1"
+    local target_file="$2"
+    local README_FILE="../README.md"
+
+    if [ ! -e "$README_FILE" ]; then
+        echo "# CSES Solutions" > "$README_FILE"
+    fi
+
+    # Check if the file already exists in the checklist
+    if grep -q "\[$target_file\]" "$README_FILE"; then
+        echo "$target_file already exists in the checklist."
+    else
+        # Check if the directory header already exists
+        if ! grep -q "## $directory" "$README_FILE"; then
+            echo "" >> "$README_FILE"
+            echo "## $directory" >> "$README_FILE"
+        fi
+
+        # Add the file to the checklist
+        FILENAME=$(basename "$target_file")
+        echo "- [ ] [$FILENAME]($target_file)" >> "$README_FILE"
+
+        echo "$README_FILE updated with the checklist of files."
+    fi
+}
+generate_link() {
+    local target_file="$1"
+    FILENAME=$(basename "$target_file")
+    echo -e "Copy link below ::\n\n"
+    echo "1. - [x] [$FILENAME]($target_file.cpp)"
+    # - [x] [1. Weird-Algorithm](Introductory-Problems/Weird-Algorithm.cpp)
+}
+
+
+# Function to create a new file
+create_file() {
+    local directory="$1"
+    local target_file="$2"
+
+    if [ -e "$target_file" ]; then
+        read -p "File '$target_file' already exists. Do you want to proceed and overwrite it? (y/n): " overwrite_choice
+        if [ "$overwrite_choice" != "y" ]; then
+            display_error "Operation aborted."
+        fi
+    fi
+
+    if [ ! -d "$directory" ]; then
+        mkdir -p "$directory"
+    fi
+
+    if [ -e "solve.cpp" ]; then
+        cat solve.cpp > "$target_file"
+        echo "File '$target_file' created successfully."
+    else
+        display_error "'solve.cpp' not found. Please make sure the file exists in the current directory."
+    fi
+}
+
+# Main script logic
+main() {
+    if [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
+        display_help
+    fi
+
+    if [ -z "$1" ]; then
+        display_error "Missing argument: <Problem>"
+    fi
+
+    if [ "$1" == "-d" ]; then
+        if [ -z "$2" ]; then
+            display_error "Missing argument: <directory>"
+        fi
+        echo "$2" > config
+    else
+        local dir_name=$(cat config)
+        if [ -z "$dir_name" ]; then
+            display_error "Directory is empty. Set a directory using the -d option."
+        fi
+        local dir="../$dir_name"
+        local target_file="$dir/$1"
+        local file_path="$dir_name/$1"
+
+        create_file "$dir" "$target_file.cpp"
+        # update_readme "$dir_name" "$file_path"
+        generate_link "$file_path"
+    fi
+}
+
+# Run the main script
+main "$@"
